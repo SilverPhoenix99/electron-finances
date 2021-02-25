@@ -5,10 +5,10 @@ import { useState, useEffect, useMemo } from 'react';
 export type Data = [number, number];
 
 interface Props {
-    data: ApexAxisChartSeries
+    series: ApexAxisChartSeries
 }
 
-export default function Chart({data}: Props) {
+export default function Chart({series}: Props) {
 
     const [ref, setRef] = useState<HTMLDivElement | null>();
     const chart = useChart(ref);
@@ -18,16 +18,13 @@ export default function Chart({data}: Props) {
         let min: number | undefined = undefined;
         let max: number | undefined = undefined;
 
-        if (data.length) {
-            min = _.map(data, ({data: d}) => (d as [number, number][])[0][0])[0];
-            max = _.map(data, ({data: d}) => (d as [number, number][])[d.length-1][0])[data.length-1];
+        if (series.length) {
+            min = _.map(series, ({data}) => (data as [number, number][])[0][0])[0];
+            max = _.map(series, ({data}) => (data as [number, number][])[data.length-1][0])[series.length-1];
         }
 
-        chart?.updateOptions({
-            series: data,
-            xaxis: { min, max },
-        } as ApexOptions)
-    }, [chart, data]);
+        chart?.updateOptions({ series: series, xaxis: { min, max } } as ApexOptions)
+    }, [chart, series]);
 
     chart?.render();
 
@@ -45,6 +42,10 @@ const useChart = (element: HTMLDivElement | null | undefined) => useMemo(() => {
             mode: 'dark',
             palette: 'palette1'
         },
+        colors: [
+            '#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0',
+            '#81D4FA', '#4CAF50', '#F9CE1D', '#FF9800', '#A300D6',
+        ],
         chart: {
             type: 'line',
             background: 'rgb(0, 0, 0, 0)',

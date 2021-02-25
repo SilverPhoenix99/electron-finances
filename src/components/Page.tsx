@@ -6,12 +6,12 @@ import { ImportButton } from '~/components/ImportButton';
 
 export default function Page() {
 
-    const [data, setData] = useState<ApexAxisChartSeries>([]);
-    useEffect(() => { loadData(setData); }, []);
+    const [series, setSeries] = useState<ApexAxisChartSeries>([]);
+    useEffect(() => { loadData(setSeries); }, []);
 
     return <>
-        <div className='debug-border'>
-            <h2 className='debug-border'>Header</h2>
+        <div>
+            <h2>Header</h2>
         </div>
         <div className='page-body' style={{display: 'flex', width: '100%'}}>
             <div className='debug-border' style={{order: 1, width: '20%'}}>
@@ -23,13 +23,13 @@ export default function Page() {
             </div>
             <div className='debug-border' style={{order: 2, width: '60%'}}>
                 <h2>Main Body</h2>
-                <Chart data={data} />
+                <Chart series={series} />
             </div>
         </div>
     </>;
 }
 
-async function loadData(setData: Dispatch<SetStateAction<ApexAxisChartSeries>>) {
+async function loadData(setSeries: Dispatch<SetStateAction<ApexAxisChartSeries>>) {
 
     const db = await getDb();
     const {store} = db.transaction('transactions');
@@ -74,5 +74,5 @@ async function loadData(setData: Dispatch<SetStateAction<ApexAxisChartSeries>>) 
         .sortBy(({data}) => data[0][0])
         .value();
 
-    setData(data);
+    setSeries(data);
 }
