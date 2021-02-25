@@ -14,14 +14,20 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^3.39.0",
+    "apexcharts": "^3.25.0",
+    "csv": "^5.3.2",
+    "idb": "^6.0.0",
+    "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.168",
     "@types/react": "^16.14.4",
     "@types/react-dom": "^16.9.11",
+    "@types/react-router-dom": "^5.1.7",
     "css-loader": "^5.0.2",
     "electron": "^11.3.0",
     "electron-is-dev": "^1.2.0",

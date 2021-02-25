@@ -1,13 +1,15 @@
-import { App } from "electron";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import '~/App.scss';
-
-import * as electron from 'electron';
-console.log(electron);
+import Page from "~/components/Page";
 
 const App = () => (
-    <div className="app">
-        <h1>I'm React running in Electron App!!</h1>
-    </div>
+    <Router>
+        <Switch>
+            <Route exact path="/">
+                <Page />
+            </Route>
+        </Switch>
+    </Router>
 );
 
 export default App;

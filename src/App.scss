@@ -4,5 +4,17 @@
 @import '~@blueprintjs/core/lib/scss/variables';
 
 body {
-    background-color: $dark-gray4;
+    background-color: $pt-dark-app-background-color;
+    height: 100%;
+}
+
+.debug-border {
+    border: thin dotted $red1;
+}
+
+.bp3-spinner.inline {
+    display: inline-block;
+    .bp3-spinner-animation {
+        display: inline-block;
+    }
 }

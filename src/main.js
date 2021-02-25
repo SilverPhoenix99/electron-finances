@@ -9,8 +9,9 @@ app.whenReady().then(() => {
         width: 1600,
         height: 900,
         webPreferences: {
-            nodeIntegration: true
-        }
+            enableRemoteModule: true,
+            nodeIntegration: true,
+        },
     });
 
     win.maximize();
