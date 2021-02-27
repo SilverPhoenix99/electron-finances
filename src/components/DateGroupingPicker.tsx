@@ -7,11 +7,11 @@ export type DateGroupingType = 'daily' | 'weekly' | 'monthly';
 export type DateGrouping = (date: Date) => Date;
 
 interface Props {
-    dateGroupingType: DateGroupingType;
+    dateGrouping: DateGroupingType;
     onChange: (selectedType: DateGroupingType) => void;
 }
 
-export default function DateGroupingPicker({dateGroupingType, onChange}: Props) {
+export default function DateGroupingPicker({dateGrouping: dateGroupingType, onChange}: Props) {
     return <ButtonGroup>
         {
             _.map<DateGroupingType>(['daily', 'weekly', 'monthly'], (type: DateGroupingType) =>

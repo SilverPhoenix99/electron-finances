@@ -9,7 +9,7 @@ export type GraphBuilder = (transactions: Transaction[], dateGrouping: DateGroup
 
 interface Props {
     graphType: GraphType;
-    onChange: (graphType: GraphType) => void;
+    onChange: (selectedType: GraphType) => void;
 }
 
 export default function GraphTypePicker({graphType, onChange}: Props) {

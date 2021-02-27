@@ -41,7 +41,7 @@ export default function Page() {
                 </div>
                 <div>
                     <Icon icon='time' style={{marginRight: '0.5rem'}} />
-                    <DateGroupingPicker dateGroupingType={dateGrouping} onChange={setDateGrouping} />
+                    <DateGroupingPicker dateGrouping={dateGrouping} onChange={setDateGrouping} />
                 </div>
             </div>
             <div /*className='debug-border'*/ style={{order: 2, width: '68%', padding: '0 0.38rem'}}>
