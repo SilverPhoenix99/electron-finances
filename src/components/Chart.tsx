@@ -1,5 +1,4 @@
 import ApexCharts, { ApexOptions } from 'apexcharts';
-import _ from 'lodash';
 import { useState, useEffect, useMemo } from 'react';
 
 export type Data = [number, number];
@@ -13,20 +12,7 @@ export default function Chart({series}: Props) {
     const [ref, setRef] = useState<HTMLDivElement | null>();
     const chart = useChart(ref);
 
-    useEffect(() => {
-
-        let min: number | undefined = undefined;
-        let max: number | undefined = undefined;
-
-        if (series.length) {
-            min = _.map(series, ({data}) => (data as [number, number][])[0][0])[0];
-            max = _.map(series, ({data}) => (data as [number, number][])[data.length-1][0])[series.length-1];
-        }
-
-        chart?.updateOptions({ series: series, xaxis: { min, max } } as ApexOptions)
-    }, [chart, series]);
-
-    chart?.render();
+    useEffect(() => { chart?.updateOptions({series} as ApexOptions); }, [chart, series]);
 
     return <div ref={setRef} />;
 }
@@ -60,6 +46,12 @@ const useChart = (element: HTMLDivElement | null | undefined) => useMemo(() => {
         xaxis: {
             type: 'datetime',
         },
+        yaxis: {
+            opposite: true,
+            labels: {
+                formatter: value => { return value.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' }) }
+            }
+        },
         grid: {
             strokeDashArray: 2,
             xaxis: {
@@ -69,7 +61,7 @@ const useChart = (element: HTMLDivElement | null | undefined) => useMemo(() => {
             },
             yaxis: {
                 lines: {
-                    show: false
+                    show: true
                 }
             }
         },
@@ -79,6 +71,7 @@ const useChart = (element: HTMLDivElement | null | undefined) => useMemo(() => {
     };
 
     const chart = new ApexCharts(element, chartOptions);
+    chart.render();
     return chart;
 
 }, [element]);
