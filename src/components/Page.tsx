@@ -136,7 +136,6 @@ const buildAccountBalances = (transactions: Transaction[], dateGrouping: (date: 
         .mapValues(ts =>
             _.chain(ts)
                 .groupBy(({date}) => dateGrouping(date).getTime())
-                .values()
                 .map((ts, time) => ({ x: Number(time), y: _.sumBy(ts, 'amount') }))
                 .transform((acc, d) => {
                     const previousAmount = acc[acc.length-1]?.y ?? 0;
